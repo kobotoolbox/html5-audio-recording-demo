@@ -110,7 +110,6 @@ function onUserMediaSuccess(stream) {
     stop.onclick = function() {
       mediaRecorder.stop();
       log("recorder state: " + mediaRecorder.state);
-      log(`Length of recording: ${msToTime(Date.now() - startTimestamp)}`);
       record.style.background = "";
       record.style.color = "";
       // mediaRecorder.requestData();
@@ -121,9 +120,9 @@ function onUserMediaSuccess(stream) {
 
     mediaRecorder.onstop = function(e) {
       log("data available after MediaRecorder.stop() called.");
-      
+      var duration = Date.now() - startTimestamp;
       var blob = new Blob(chunks, { 'type' : mediaRecorder.mimeType });
-      log(`Size of saved blob: ${(blob.size / 1000000).toFixed(2)} MB.  Audio recording mimeType: ${mediaRecorder.mimeType}`);
+      log(`Size of saved blob: ${(blob.size / 1000000).toFixed(2)} MB. Length of recording: ${msToTime(duration)} (${Math.round(blob.size / (duration / 1000))}b/s) Audio recording mimeType: ${mediaRecorder.mimeType}`);
       chunks = [];
       var name = "audioClip_" + Math.random() + ++blobNumber;
       idbKeyval.set(name, blob).then(
