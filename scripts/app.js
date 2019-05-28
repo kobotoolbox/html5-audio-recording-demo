@@ -61,7 +61,6 @@ function onGetStorageInfoClicked() {
   
 function onInitializeMediastreamClicked() {
   initializeMediastream.disabled = true;
-  record.disabled = false;
 
   //main block for doing the audio recording
 
@@ -82,6 +81,7 @@ function onUserMediaSuccess(stream) {
       log("MediaRecorder API not supported on your browser!");
       return;
     }
+    record.disabled = false;
     var mediaRecorder = new MediaRecorder(stream);
 
     record.onclick = function() {
@@ -110,9 +110,9 @@ function onUserMediaSuccess(stream) {
       log("data available after MediaRecorder.stop() called.");
       
       var blob = new Blob(chunks, { 'type' : mediaRecorder.mimeType });
-      log(`Size of saved blob: ${(blob.size / 1000000).toFixed(2)} MB`);
+      log(`Size of saved blob: ${(blob.size / 1000000).toFixed(2)} MB.  Audio recording mimeType: ${mediaRecorder.mimeType}`);
       chunks = [];
-      var name = "audioClip_" + Math.random + ++blobNumber;
+      var name = "audioClip_" + Math.random() + ++blobNumber;
       idbKeyval.set(name, blob).then(
         () => log(`Successfully saved ${name} to indexedDb`),
         () => log(`Failed to save ${name} to indexedDb`)
