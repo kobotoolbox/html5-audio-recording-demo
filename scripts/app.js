@@ -7,6 +7,9 @@ var logSection = document.querySelector('.log-section');
 var clearLogsButton = document.querySelector('.clear-logs-button');
 var clearStorageButton = document.querySelector('.clear-storage-button');
 var mainSection = document.querySelector('.main-controls');
+var bitsPerSecondInput = document.getElementById("bitsPerSecond");
+bitsPerSecondInput.defaultValue = 128000;
+updateBitsPerSecondText(bitsPerSecondInput.defaultValue);
 
 var chunks = [];
 var blobNumber = 0;
@@ -19,6 +22,14 @@ getStorageInfo.onclick = onGetStorageInfoClicked;
 // disable buttons until onInitialize is called
 record.disabled = true;
 stop.disabled = true;
+
+function updateBitsPerSecondText(val) {
+  document.getElementById('bitsPerSecondText').value=val; 
+}
+
+function updateBitsPerSecondSlider(val) {
+  document.getElementById('bitsPerSecond').value=val; 
+}
 
 function msToTime(duration) {
   var milliseconds = parseInt((duration % 1000) / 100),
@@ -82,7 +93,7 @@ function onUserMediaSuccess(stream) {
       return;
     }
     record.disabled = false;
-    var mediaRecorder = new MediaRecorder(stream);
+    var mediaRecorder = new MediaRecorder(stream, {bitsPerSecond: parseInt(bitsPerSecondInput.value)});
 
     record.onclick = function() {
       mediaRecorder.start();

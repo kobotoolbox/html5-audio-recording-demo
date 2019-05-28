@@ -22,6 +22,12 @@
         </div>
 
         <div class="buttons">
+          <label for="bitsPerSecond">bit rate (b/s)</label>
+          <input type="range" min="64000" max="640000" step="64000" id="bitsPerSecond" onchange="updateBitsPerSecondText(this.value)">
+          <input type="number" min="64000" max="640000" step="64000" id="bitsPerSecondText" onchange="updateBitsPerSecondSlider(this.value)">
+        </div>
+
+        <div class="buttons">
           <button class="record">Record</button>
           <button class="stop">Stop</button>
         </div>
