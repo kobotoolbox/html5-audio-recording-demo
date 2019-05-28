@@ -99,6 +99,7 @@ function onUserMediaSuccess(stream) {
       mediaRecorder.start();
       startTimestamp = Date.now();
       log("recorder state: " + mediaRecorder.state);
+      log(`Recorder audio bitrate: ${mediaRecorder.audioBitsPerSecond}b/s`);
       record.style.background = "red";
 
       stop.disabled = false;
