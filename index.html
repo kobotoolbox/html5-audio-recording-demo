@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Audio and storage POC</title>
+    <link href="styles/app.css" rel="stylesheet" type="text/css">
+    <link href="styles/install-button.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+
+    <div class="wrapper">
+
+      <header>
+        <h1>Audio and storage POC</h1>
+      </header>
+
+      <section class="main-controls">
+        <div class="buttons">
+          <button class="initialize-mediastream">Initialize MediaStream and Recorder APIs</button>
+          <button class="get-storage-info">Get Storage info</button>
+        </div>
+
+        <div class="buttons">
+          <button class="record">Record</button>
+          <button class="stop">Stop</button>
+        </div>
+      </section>
+
+      <div class="buttons">
+        <button class="clear-logs-button">Clear logs</button>
+        <button class="clear-storage-button">Clear indexeddb</button>
+      </div>
+      <section class="log-section"></section>
+    </div>
+
+    <script src="scripts/mediaDevices-getUserMedia-polyfill.js"></script>
+    <script src="scripts/idb-keyval-iife.min.js"></script>
+
+    <!-- Below is your custom application script -->
+    <script src="scripts/app.js"></script>
+
+  </body>
+</html>
