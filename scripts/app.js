@@ -92,6 +92,7 @@ function onUserMediaSuccess(stream) {
       log("MediaRecorder API not supported on your browser!");
       return;
     }
+    log("MediaRecorder API is supported.");
     record.disabled = false;
     var mediaRecorder = new MediaRecorder(stream, {bitsPerSecond: parseInt(bitsPerSecondInput.value)});
 
